@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <title></title>
 </head>
+
 <body>
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <form action="" methop="POST">
+                <form action="/user" method="POST">
                     <div class="row mb-3">
                         <div class="col">
                             <label for="">Username</label>
@@ -33,37 +34,70 @@
                     </div>
                 </form>
 
+                </form>
+
                 <!--table-->
                 <table class="table table-bordered">
                     <thead>
-                        <th class="col">#</th>
+                        <th class="col">Id</th>
                         <th class="col">Username</th>
                         <th class="col">Name</th>
                         <th class="col">Password</th>
                         <th class="col">Edit</th>
                         <th class="col">Delete</th>
                     </thead>
-                </table>
+                    <tbody>
+                        {%for d in data%}
+                        <tr>
+                            <td>{{d.id}}</td>
+                            <td>{{d.username}}</td>
+                            <td>{{d.name}}</td>
+                            <td>{{d.password}}</td>
+                            <td><button class="btn btn-primary btn-sm" id="btn-edit{{d.id}}" data-bs-toggle="modal"
+                                    data-bs-target="#modal{{d.id}}">Editar</button></td>
+                            <td><a href="{{url_for('delete', id=d.id)}}" class="btn btn-danger btn-sm">Delete</a></td>
+                        </tr>
 
-                <tbody>
-                    {%for d in data%}
-                    <tr>
-                    <td>{{d.id}}</td>
-                    <td>{{d.username}}</td>
-                    <td>{{d.name}}</td>
-                    <td>{{d.password}}</td>
-                    <td><button class="btn btn-primary btn-sm" id="" type="">Editar</button></td>
-                    <td><a href="#" class="btn btn-danger btn-sm">Delete</a></td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
+                        <!--Modal-->
+
+                        <div class="modal" id="modal{{d.id}}" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">{{d.username}}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/edit/{{d.id}}" method="POST">
+                                            <label for="">Username</label>
+                                            <input type="text" class="form-control mb-3" name="username" value="{{d.username}}">
+                                            <label for="">Name</label>
+                                            <input type="text" class="form-control mb-3" name="name" value="{{d.name}}">
+                                            <label for="">Password</label>
+                                            <input type="text" class="form-control mb-3" name="password" value="{{d.password}}">
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
 </body>
-<script src="https://kit.fontawesome.com/9c61ead5a6.js" crossorigin="anonymous"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-        crossorigin="anonymous"></script>
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+
 </html>
