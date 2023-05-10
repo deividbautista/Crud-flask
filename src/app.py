@@ -1,7 +1,9 @@
+#Sección donde importamos las distintas librerias que se van a utilizar
 from flask import Flask, render_template, request, redirect, url_for
 import os
 import database as db
 
+#Se definen las variables de las rutas
 template_dir = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
 template_dir = os.path.join(template_dir, 'src', 'templates')
 
@@ -36,6 +38,7 @@ def addUser():
         db.database.commit()
     return redirect(url_for('home'))
 
+#Ruta para realizar la sentencia SQL "Delete"
 @app.route('/delete/<string:id>')
 def delete(id):
     cursor = db.database.cursor()
@@ -45,6 +48,7 @@ def delete(id):
     db.database.commit()
     return redirect(url_for('home'))
 
+#Ruta para realizar la sentencia SQL "Update"
 @app.route('/edit/<string:id>', methods=['POST'])
 def edit(id):
     username = request.form['username']
@@ -59,5 +63,6 @@ def edit(id):
         db.database.commit()
     return redirect(url_for('home'))
 
+#Condicional para poder ejecutar al aplicativo.
 if __name__ == '__main__':
     app.run(debug=True)
