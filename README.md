@@ -1,7 +1,6 @@
 # Crud-flask
 In the next repository we will develop the construction of a raw matrix, to be able to use it in future projects that involve flask.
 <hr/>
-<!--*pip install mysql-connector-python==8.0.29-->
 
 ## Requisitos previos
 
@@ -11,11 +10,7 @@ In the next repository we will develop the construction of a raw matrix, to be a
 
 # Important commands:
 
-## Para intalar flask en el sistema operativo windows
-
-"pip install flask"
-
-## Para instalar virtualenv al igual que flask
+## Para instalar virtualenv
 Nos permite tener un pequeño espacio o sector con sus propias caractersticas, esto para evitar problemas de compartivilidad
 
 "pip install virtualenv"
@@ -39,3 +34,9 @@ solicita permisos, por lo que este comando es necesario
 Este par de comandos nos sirven para activar nuestro entorno virtual :)
 
 .\[Nombre de la carpeta en este caso env]\Scripts\activate or cd.\[Nombre de la carpeta en este caso env] cd.\Scripts\ .\activate
+  
+## Para instalar todas las dependencias que vamos a necesitar en este presente proyecto
+
+pip install flask
+<br/>
+pip install mysql-connector-python==8.0.29
